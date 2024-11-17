@@ -28,7 +28,7 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
   const activeTodos = todos.filter(todo => !todo.isDone);
   const completedTodos = todos.filter(todo => todo.isDone);
 
-  const handleComplete = (id: number) => {
+  const handleComplete = (id: string) => {
     setTodos(todos.map(todo =>
       todo.id === id ? { ...todo, isDone: true } : todo
     ));
@@ -48,7 +48,7 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
     }
   };
 
-  const TodoItem = ({ todo, isCompleted = false }) => (
+  const TodoItem = ({ todo, isCompleted = false }:any) => (
     <motion.li
       layout
       //initial={{ opacity: 0, y: 0 }}
@@ -90,7 +90,7 @@ const TodoList: React.FC<Props> = ({ todos, setTodos }) => {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
-              onClick={() => handleComplete(Number(todo.id))}
+              onClick={() => handleComplete((todo.id))}
               className="p-1 text-green-500 hover:text-green-700 rounded-full hover:bg-green-50"
             >
               <Check size={18} />
